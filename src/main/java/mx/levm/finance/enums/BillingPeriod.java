@@ -1,0 +1,16 @@
+package mx.levm.finance.enums;
+
+public enum BillingPeriod {
+    JANUARY_FEBRUARY,
+    FEBRUARY_MARCH,
+    MARCH_APRIL,
+    APRIL_MAY,
+    MAY_JUNE,
+    JUNE_JULY,
+    JULY_AUGUST,
+    AUGUST_SEPTEMBER,
+    SEPTEMBER_OCTOBER,
+    OCTOBER_NOVEMBER,
+    NOVEMBER_DECEMBER,
+    DECEMBER_JANUARY
+}
