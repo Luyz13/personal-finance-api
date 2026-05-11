@@ -6,40 +6,43 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import mx.levm.finance.enums.*;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateExpenseRequest {
+public class CreateTransactionRequest {
 
-    @NotBlank
+    @NotBlank(message = "El concepto es obligatorio")
+    @Size(max = 150)
     private String concept;
 
-    @NotNull
-    @Positive
+    @NotNull(message = "El monto es obligatorio")
     private BigDecimal amount;
 
-    @NotNull
+    @NotNull(message = "La fecha de gasto es obligatoria")
     private LocalDate expenseDate;
 
-    @NotNull
+    @NotNull(message = "El año es obligatorio")
+    @Positive(message = "El año debe ser un valor positivo")
     private Integer year;
 
-    @NotNull
+    @NotNull(message = "El tipo de transacción es obligatorio")
+    private TransactionType transactionType;
+
     private ExpenseType expenseType;
 
-    @NotNull
+    @NotNull(message = "El método de pago es obligatorio")
     private PaymentMethod paymentMethod;
 
-    @NotNull
+    @NotNull(message = "El mes es obligatorio")
     private Month month;
 
     private BillingPeriod billingPeriod;

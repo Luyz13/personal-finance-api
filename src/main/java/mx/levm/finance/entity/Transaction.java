@@ -9,10 +9,11 @@ import mx.levm.finance.enums.BillingPeriod;
 import mx.levm.finance.enums.ExpenseType;
 import mx.levm.finance.enums.Month;
 import mx.levm.finance.enums.PaymentMethod;
+import mx.levm.finance.enums.TransactionType;
 
 @Entity
 @Table(name = "expenses")
-public class Expense {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +30,10 @@ public class Expense {
 
     @Column(name = "year", nullable = false)
     private Integer year;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "transaction_type", nullable = false, length = 30)
+    private TransactionType transactionType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "expense_type", nullable = false, length = 30)
@@ -60,7 +65,7 @@ public class Expense {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Expense() {
+    public Transaction() {
     }
 
     @PrePersist
