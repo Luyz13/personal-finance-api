@@ -7,37 +7,36 @@ import mx.levm.finance.dto.CreateTransactionRequest;
 import mx.levm.finance.entity.Bank;
 import mx.levm.finance.entity.InstallmentPlan;
 import mx.levm.finance.entity.Transaction;
-import mx.levm.finance.enums.TransactionType;
 import mx.levm.finance.repository.BankRepository;
 import mx.levm.finance.repository.TransactionRepository;
 
 @Service
-public class ExpenseService {
+public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final BankRepository bankRepository;
 
-    public ExpenseService(TransactionRepository transactionRepository, BankRepository bankRepository) {
+    public TransactionService(TransactionRepository transactionRepository, BankRepository bankRepository) {
         this.transactionRepository = transactionRepository;
         this.bankRepository = bankRepository;
     }
 
     @Transactional
-    public Transaction createExpense(CreateTransactionRequest request) {
-        Transaction expense = new Transaction();
-        expense.setConcept(request.getConcept());
-        expense.setAmount(request.getAmount());
-        expense.setExpenseDate(request.getExpenseDate());
-        expense.setYear(request.getYear());
-        expense.setTransactionType(TransactionType.EXPENSE);
-        expense.setExpenseType(request.getExpenseType());
-        expense.setPaymentMethod(request.getPaymentMethod());
-        expense.setMonth(request.getMonth());
-        expense.setBillingPeriod(request.getBillingPeriod());
-        expense.setBank(findBank(request.getBankId()));
-        expense.setInstallmentPlan(createInstallmentPlan(request));
+    public Transaction createTransaction(CreateTransactionRequest request) {
+        Transaction transaction = new Transaction();
+        transaction.setConcept(request.getConcept());
+        transaction.setAmount(request.getAmount());
+        transaction.setExpenseDate(request.getExpenseDate());
+        transaction.setYear(request.getYear());
+        transaction.setTransactionType(request.getTransactionType());
+        transaction.setExpenseType(request.getExpenseType());
+        transaction.setPaymentMethod(request.getPaymentMethod());
+        transaction.setMonth(request.getMonth());
+        transaction.setBillingPeriod(request.getBillingPeriod());
+        transaction.setBank(findBank(request.getBankId()));
+        transaction.setInstallmentPlan(createInstallmentPlan(request));
 
-        return transactionRepository.save(expense);
+        return transactionRepository.save(transaction);
     }
 
     private Bank findBank(Long bankId) {
