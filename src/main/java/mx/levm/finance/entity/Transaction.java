@@ -116,6 +116,14 @@ public class Transaction {
         this.year = year;
     }
 
+    public TransactionType getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
     public ExpenseType getExpenseType() {
         return expenseType;
     }
